@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<head>
+<style>
+body {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  padding-top: 20px;
+  background-color: blue;
+  
+}
+.kalkulator{
+  text-align: center;
+  border: 5px solid  #4CAF50;
+  padding-bottom: 20px;
+  text-decoration-color: burlywood;
+  background-color: red;
+  color: white;
+  font: 20px Arial bold, sans-serif;
+}
+.button{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+
+</head>
+<body>
+<div class="kalkulator">
+<h2>JavaScript kalkulator</h2>
+<form name="myForm" >
+<select id="operacija" name="operacija" class="button">
+<option value="sabiranje">Sabiranje</option>
+<option value="oduzimanje">Oduzimanje</option>
+<option value="mnozenje">Mnozenje</option>
+<option value="deljenje">Deljenje</option>
+</select><br><br>
+<label id="lname">Prvi broj :</label>
+<input type="text" id="prviBroj" name="prviBroj"><br><br>
+<label id="lname">Drugi broj :</label>
+<input type="text" id="drugiBroj" name="drugiBroj"><br><br>
+<input type="button" class="button" onclick="return validateForm()" value="Submit"><br><br>
+<label id="lname">Rezultat :</label>
+<input type="text" id="rezultat" name="rezultat"><br><br>
+<input class="button" type="button" onclick="return clearForm()" value="AC"><br>
+</form>
+</div>
+
+<script>
+  function validateForm() {
+var x = document.getElementById("prviBroj").value;
+var y = document.getElementById("drugiBroj").value;
+var z = document.getElementById("operacija").value;
+if(x=="" && y==""){
+  alert("Morate uneti vrednost oba polja");
+  return false;
+}else
+if (x == "") {
+  alert("Morate uneti broj u prvo polje!");
+  document.forms["myForm"]["prviBroj"].value="";
+  return false;
+}else
+if (y == "") {
+  alert("Morate uneti broj u drugo polje!");
+  document.forms["myForm"]["drugiBroj"].value="";
+  return false;
+}else
+if(isNaN(x) || isNaN(y)){
+  alert("Upisite u oba polja broj! ");
+  return false;
+}
+else{
+    if(z==="sabiranje"){
+    document.getElementById("rezultat").value=Number(x)+Number(y);
+    }
+    if(z==="oduzimanje"){
+    document.getElementById("rezultat").value=Number(x)-Number(y);
+    }
+    if(z==="mnozenje"){
+    document.getElementById("rezultat").value=x*y;
+    }
+    if(z==="deljenje"){
+      if(Number(y)===0){
+        alert("Deljenje 0 nije moguce! ");
+        return false;
+      }else{
+        document.getElementById("rezultat").value=Number(x)/Number(y);
+      }
+    }
+  
+}
+return true;
+}
+function clearForm(){
+  document.getElementById("prviBroj").value="";
+  document.getElementById("drugiBroj").value="";
+  document.getElementById("rezultat").value="";
+  return true;
+}
+</script>
+
+
+</body>
